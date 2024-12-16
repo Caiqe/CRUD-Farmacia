@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.generation.farmacia.model.Categoria;
 import com.generation.farmacia.model.Produto;
 import com.generation.farmacia.repository.CategoriaRepository;
 import com.generation.farmacia.repository.ProdutoRepository;
+import com.generation.farmacia.service.ProdutoService;
 
 import jakarta.validation.Valid;
 
@@ -32,6 +32,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private ProdutoService  produtoService;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -50,6 +53,16 @@ public class ProdutoController {
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
+	}
+	
+	@GetMapping("/menorvalor")
+	public ResponseEntity<List<Produto>> getAllValorCrescente(){
+		return ResponseEntity.ok(produtoRepository.findAllByOrderByValorAsc());
+	}
+	
+	@GetMapping("/vencendo")
+	public ResponseEntity<List<Produto>> getProdutosVencendo(){
+		return ResponseEntity.ok(produtoService.checaValidade());
 	}
 
 	@PostMapping
