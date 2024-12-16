@@ -34,12 +34,16 @@ public class Produto {
 	private String descricao;
 
 	@NotNull(message = "O atributo 'valor' deve ser preenchido.")
-	@Positive (message = "O atributo 'valor' deve ser positivo.")
+	@Positive(message = "O atributo 'valor' deve ser positivo.")
 	private BigDecimal valor;
-	
+
 	@FutureOrPresent(message = "o atributo 'validade' deve ser preenchido com uma data igual ou superior a data atual.")
-	@NotNull(message =  "O atributo 'validade' deve ser preenchido.")
+	@NotNull(message = "O atributo 'validade' deve ser preenchido.")
 	private LocalDate validade;
+
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private Categoria categoria;
 
 	public LocalDate getValidade() {
 		return validade;
@@ -48,10 +52,6 @@ public class Produto {
 	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
-
-	@ManyToOne
-	@JsonIgnoreProperties("produtos")
-	private Categoria categoria;
 
 	public long getId() {
 		return id;
