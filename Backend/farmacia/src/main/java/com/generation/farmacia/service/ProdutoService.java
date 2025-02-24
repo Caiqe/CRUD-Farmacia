@@ -16,14 +16,5 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
-	public List<Produto> checaValidade(){
-		
-		LocalDate dataAtual = LocalDate.now(); 
-		LocalDate dataLimite = dataAtual.plusMonths(1);
-		
-		List<Produto> produtosVencendo = produtoRepository.findByValidadeBefore(dataLimite);
-		
-		return produtosVencendo;
-		
-	}
+
 }

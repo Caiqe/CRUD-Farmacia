@@ -16,6 +16,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
 	public List <Produto> findAllByOrderByValorAsc();
 	
-	public List <Produto> findByValidadeBefore(LocalDate data);
+	
 
 }

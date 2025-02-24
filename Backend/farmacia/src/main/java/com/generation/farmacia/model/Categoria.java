@@ -12,9 +12,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 @Entity
 @Table(name = "tb_categorias")
+@Data
 public class Categoria {
 
 	@Id
@@ -29,20 +31,5 @@ public class Categoria {
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produtos;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
+	
 }

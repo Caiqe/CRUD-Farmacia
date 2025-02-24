@@ -60,10 +60,6 @@ public class ProdutoController {
 		return ResponseEntity.ok(produtoRepository.findAllByOrderByValorAsc());
 	}
 	
-	@GetMapping("/vencendo")
-	public ResponseEntity<List<Produto>> getProdutosVencendo(){
-		return ResponseEntity.ok(produtoService.checaValidade());
-	}
 
 	@PostMapping
 	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) {
