@@ -32,9 +32,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
 	@Autowired
-	private ProdutoService  produtoService;
+	private ProdutoService produtoService;
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -54,12 +54,18 @@ public class ProdutoController {
 	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
 	}
-	
+
 	@GetMapping("/menorvalor")
-	public ResponseEntity<List<Produto>> getAllValorCrescente(){
+	public ResponseEntity<List<Produto>> getAllValorCrescente() {
 		return ResponseEntity.ok(produtoRepository.findAllByOrderByValorAsc());
 	}
-	
+
+	@GetMapping("/categoria/{categoriaId}")
+	public ResponseEntity<List<Produto>> getByCategoria(@PathVariable Long categoriaId) {
+		if (categoriaRepository.existsById(categoriaId))
+			return ResponseEntity.ok(produtoRepository.findByCategoriaId(categoriaId));
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
 
 	@PostMapping
 	public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) {

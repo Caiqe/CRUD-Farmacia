@@ -16,6 +16,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
 	public List <Produto> findAllByOrderByValorAsc();
 	
-	
+	List<Produto> findByCategoriaId(Long categoriaId);
 
 }
