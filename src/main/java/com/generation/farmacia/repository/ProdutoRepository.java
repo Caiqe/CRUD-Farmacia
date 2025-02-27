@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 import com.generation.farmacia.model.Produto;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
-	
-	public List <Produto> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
-	
-	public List <Produto> findAllByOrderByValorAsc();
-	
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+
+	public List<Produto> findAllByNomeContainingIgnoreCase(@Param("nome") String nome);
+
+	public List<Produto> findAllByOrderByValorAsc();
+
 	List<Produto> findByCategoriaId(Long categoriaId);
 
 }

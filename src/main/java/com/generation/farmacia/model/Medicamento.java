@@ -14,9 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class Medicamento extends Produto{
+public class Medicamento extends Produto {
 
-	
-	 @NotNull(message = "O atributo 'controlado' deve ser preenchido.")
-	    private Boolean controlado; 
+	@NotNull(message = "O atributo 'bula' deve ser preenchido.")
+	private String bula;
 }

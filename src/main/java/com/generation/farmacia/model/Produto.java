@@ -36,10 +36,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipoProduto")
-@JsonSubTypes({
-    @JsonSubTypes.Type(value = Cosmetico.class, name = "COSMÉTICO"),
-    @JsonSubTypes.Type(value = Medicamento.class, name = "MEDICAMENTO")
-})
+@JsonSubTypes({ @JsonSubTypes.Type(value = Cosmetico.class, name = "COSMÉTICO"),
+		@JsonSubTypes.Type(value = Medicamento.class, name = "MEDICAMENTO") })
 public abstract class Produto {
 
 	@Id
@@ -57,24 +55,20 @@ public abstract class Produto {
 	@NotNull(message = "O atributo 'valor' deve ser preenchido.")
 	@Positive(message = "O atributo 'valor' deve ser positivo.")
 	private BigDecimal valor;
-	
+
 	@Size(max = 5000, message = "O link com a imagem deve ter no máximo 5000 caracteres")
 	private String imagem;
 
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
-	
+
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-    private List<PedidoProduto> pedidoProdutos;
-	
+	private List<PedidoProduto> pedidoProdutos;
+
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<CarrinhoProduto> carrinhoProdutos;
-	
-	
+
 }
-
-
-	
